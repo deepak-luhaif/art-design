@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Contour
 
-## Getting Started
+A beginner-friendly, step-by-step drawing tutorial site. Pick a subject, step through a 20&ndash;30
+frame tutorial one line at a time, and swap between five completely different visual themes without
+touching the underlying lessons.
 
-First, run the development server:
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) (Next.js will pick the next free port if 3000 is
+taken).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other scripts:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # production build (static-export friendly)
+npm run start   # serve the production build
+npm run lint    # eslint
+```
 
-## Learn More
+## How it's put together
 
-To learn more about Next.js, take a look at the following resources:
+- **`app/`** &mdash; routes. `/` is the home page (hero + subject grid); `/tutorials/[slug]` is the
+  tutorial player, driven entirely by the tutorial's data file.
+- **`lib/themes.ts`** &mdash; the list of themes and their motion/texture metadata.
+- **`lib/tutorials/*.tsx`** &mdash; one file per subject. Each exports a `steps` list (title +
+  instruction) and an `elements` list: every piece of line art tagged with the step it first appears
+  on (`step`) and, optionally, the step at which a construction guide is replaced by final ink
+  (`hideAt`). `StepCanvas` filters this list against the current step to render the cumulative
+  drawing &mdash; add a new subject by dropping in another file here.
+- **`components/`** &mdash; `TutorialPlayer` composes `StepCanvas`, `StepControls`, `ProgressBar`, and
+  the `FrameSheet` contact-sheet view. `ThemeSwitcher` writes the chosen theme to
+  `document.documentElement.dataset.theme` and `localStorage`.
+- **Theming** is CSS-variable driven: `app/globals.css` defines a full palette/typography/texture
+  token set per `data-theme` value, and components only ever read the CSS variables (never a
+  hardcoded theme color), so adding a sixth theme is a CSS-only change.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Themes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Theme | Personality |
+| --- | --- |
+| Anime | Bold outlines, magenta/cyan color pops, halftone texture, speed-line accents |
+| Retro GIF | Neon-on-black, scanline overlay, hard-cut flicker transitions, blinking cursor |
+| Gallery | Warm paper, serif type, hairline frame, slow gentle fades |
+| Studio | Neutral palette, geometric sans, soft shadows, minimal motion |
+| Craft | Watercolor palette, wobbly hand-drawn borders, spring/bounce transitions |
 
-## Deploy on Vercel
+Progress per tutorial and the selected theme are both saved to `localStorage`, so reloading or
+coming back later resumes where you left off. Finishing a tutorial triggers a small confetti
+moment (skipped automatically for `prefers-reduced-motion`).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Accessibility
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- The drawing canvas is exposed as a single `role="img"` with a text description of the current
+  step, rather than as a tree of individual shapes.
+- All interactive controls are real `<button>`/`<a>` elements with visible focus rings and
+  44px-minimum tap targets for Back/Next.
+- `prefers-reduced-motion` disables the GIF flicker, confetti, and hover bounce effects in favor of
+  an instant swap.
