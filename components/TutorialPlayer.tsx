@@ -4,13 +4,17 @@ import Link from "next/link";
 import { useState, useSyncExternalStore, useEffect } from "react";
 import type { Tutorial } from "@/lib/types";
 import { getStoredStep, setStoredStep, subscribeStoredStep } from "@/lib/progressStore";
+import { getTutorialSeen, subscribeTutorialSeen } from "@/lib/tutorialStore";
+import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 import StepCanvas from "./StepCanvas";
 import StepControls from "./StepControls";
 import FrameSheet from "./FrameSheet";
+import SwipeTutorial from "./SwipeTutorial";
 
 export default function TutorialPlayer({ tutorial }: { tutorial: Tutorial }) {
   const total = tutorial.steps.length;
   const [showFrameSheet, setShowFrameSheet] = useState(false);
+  const [showSwipeTutorial, setShowSwipeTutorial] = useState(false);
 
   // localStorage is the source of truth for progress
   const currentStep = useSyncExternalStore(
@@ -18,6 +22,15 @@ export default function TutorialPlayer({ tutorial }: { tutorial: Tutorial }) {
     () => getStoredStep(tutorial.slug, total),
     () => 1
   );
+
+  // Track if swipe tutorial has been seen
+  useEffect(() => {
+    const unsubscribe = subscribeTutorialSeen(tutorial.slug, (seen) => {
+      setShowSwipeTutorial(!seen);
+    });
+    return unsubscribe;
+  }, [tutorial.slug]);
+
   const goToStep = (step: number) => setStoredStep(tutorial.slug, Math.min(total, Math.max(1, step)));
 
   // Keyboard navigation
@@ -36,10 +49,26 @@ export default function TutorialPlayer({ tutorial }: { tutorial: Tutorial }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [currentStep, total, goToStep]);
 
+  // Swipe navigation (disabled when tutorial overlay is shown)
+  useSwipeNavigation(
+    {
+      onSwipeLeft: () => goToStep(Math.min(total, currentStep + 1)),
+      onSwipeRight: () => goToStep(Math.max(1, currentStep - 1)),
+    },
+    !showFrameSheet && !showSwipeTutorial
+  );
+
   const isComplete = currentStep === total;
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-8 md:py-12">
+    <>
+      {showSwipeTutorial && (
+        <SwipeTutorial
+          tutorialSlug={tutorial.slug}
+          onDismiss={() => setShowSwipeTutorial(false)}
+        />
+      )}
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-8 md:py-12">
       {/* Navigation Header */}
       <div className="flex flex-col gap-4 md:gap-6">
         <Link
@@ -142,6 +171,7 @@ export default function TutorialPlayer({ tutorial }: { tutorial: Tutorial }) {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 }
