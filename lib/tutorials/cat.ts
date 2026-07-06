@@ -232,9 +232,21 @@ export const catTutorial: Tutorial = {
     {
       id: 26,
       title: "Final details",
-      instruction: "Finish with a couple of soft fold lines on the cheeks and belly.",
+      instruction: "Finish with expression lines and fur texture for depth.",
       strokes: [
-        { id: "cat-details", shape: { type: "path", d: "M148,182 Q153,188 148,194 M252,182 Q247,188 252,194 M172,340 Q200,332 228,340 M168,378 Q200,368 232,378" } }
+        // Cheek definition and wrinkles
+        { id: "cat-cheek-l", shape: { type: "path", d: "M148,185 Q145,190 148,200 M152,188 Q148,195 152,205" } },
+        { id: "cat-cheek-r", shape: { type: "path", d: "M252,185 Q255,190 252,200 M248,188 Q252,195 248,205" } },
+        // Nose shadow/depth
+        { id: "cat-nose-shadow", shape: { type: "path", d: "M195,172 L205,172 M192,174 L208,174" } },
+        // Chin dimple
+        { id: "cat-chin-dimple", shape: { type: "path", d: "M200,220 Q195,224 200,228 Q205,224 200,220" } },
+        // Belly fur texture
+        { id: "cat-belly-fur", shape: { type: "path", d: "M172,340 Q200,332 228,340 M170,360 Q200,350 230,360 M168,378 Q200,368 232,378" } },
+        // Shadow on body for dimension
+        { id: "cat-body-shadow", shape: { type: "path", d: "M145,280 Q140,320 142,360 M255,280 Q260,320 258,360" } },
+        // Additional fur detail on body
+        { id: "cat-body-texture", shape: { type: "path", d: "M185,300 Q188,305 185,310 M215,300 Q212,305 215,310" } }
       ]
     }
   ]

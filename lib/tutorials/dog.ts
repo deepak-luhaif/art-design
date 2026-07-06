@@ -211,11 +211,26 @@ export const dogTutorial: Tutorial = {
     },
     {
       id: 24,
-      title: "Chest fur & toe splits",
-      instruction: "Add a tuft of chest fur and lines detailing the toes on the front paws.",
+      title: "Final details & fur texture",
+      instruction: "Add depth with fur tufts, shadows, and playful expression accents.",
       strokes: [
-        { id: "dog-chest-fur", shape: { type: "path", d: "M180,225 Q200,235 220,225" } },
-        { id: "dog-toes", shape: { type: "path", d: "M170,380 L170,382 M180,380 L180,382 M220,380 L220,382 M230,380 L230,382" } }
+        // Chest fur tuft - more pronounced
+        { id: "dog-chest-fur", shape: { type: "path", d: "M170,220 Q200,235 230,220 M175,215 Q200,228 225,215" } },
+        // Toe details on front paws
+        { id: "dog-toes-fl", shape: { type: "path", d: "M168,375 L168,383 M178,376 L178,384 M192,376 L192,384 M182,380 L182,386" } },
+        { id: "dog-toes-fr", shape: { type: "path", d: "M208,376 L208,384 M218,375 L218,383 M232,376 L232,384 M222,380 L222,386" } },
+        // Body fur texture and shadows
+        { id: "dog-body-fur", shape: { type: "path", d: "M160,260 Q155,290 158,330 M240,260 Q245,290 242,330" } },
+        // Expression lines around mouth (happy wrinkles)
+        { id: "dog-mouth-wrinkles", shape: { type: "path", d: "M172,170 Q175,175 172,180 M228,170 Q225,175 228,180" } },
+        // Snout shading
+        { id: "dog-snout-shadow", shape: { type: "path", d: "M195,162 L205,162 M190,168 Q200,170 210,168" } },
+        // Paw pads (darker spots on paws)
+        { id: "dog-paw-pads", shape: { type: "path", d: "M170,382 L170,384 M180,384 L180,386 M230,384 L230,386" } },
+        // Ear inner details enhancement
+        { id: "dog-ear-inner-detail", shape: { type: "path", d: "M130,160 Q125,170 128,180 M270,160 Q275,170 272,180" } },
+        // Body contour for dimension
+        { id: "dog-body-contour", shape: { type: "path", d: "M145,280 Q135,320 140,365 M255,280 Q265,320 260,365" } }
       ]
     }
   ]
