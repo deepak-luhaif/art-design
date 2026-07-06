@@ -3,13 +3,22 @@ import { Playfair_Display, Source_Serif_4 } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
-const playfair = Playfair_Display({ variable: "--font-gallery-display", subsets: ["latin"] });
-const sourceSerif4 = Source_Serif_4({ variable: "--font-gallery-body", subsets: ["latin"] });
+const playfair = Playfair_Display({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const sourceSerif = Source_Serif_4({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "600"],
+});
 
 export const metadata: Metadata = {
-  title: "Contour — draw along, step by step",
+  title: "Contour — sketchbook drawing tutorials",
   description:
-    "A beginner-friendly, step-by-step drawing tutorial site. Pick a subject and draw along one frame at a time.",
+    "A beginner-friendly, step-by-step drawing tutorial site. Pick a subject and sketch along one line at a time.",
 };
 
 export default function RootLayout({
@@ -18,27 +27,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${sourceSerif4.variable}`}>
-      <body className="min-h-screen antialiased">
+    <html lang="en" className={`${playfair.variable} ${sourceSerif.variable}`}>
+      <body className="min-h-screen antialiased flex flex-col">
         <header
-          className="sticky top-0 z-50 flex items-center justify-between gap-3 px-4 py-3 sm:px-6"
+          className="w-full flex items-center justify-between px-6 py-4 mx-auto max-w-6xl"
           style={{
-            background: "color-mix(in srgb, var(--color-bg) 88%, transparent)",
-            backdropFilter: "blur(8px)",
-            borderBottomWidth: "var(--border-width)",
-            borderBottomColor: "var(--color-border)",
-            borderBottomStyle: "solid",
+            borderBottom: "1px solid var(--color-border)",
           }}
         >
           <Link
             href="/"
-            className="text-lg font-bold"
-            style={{ fontFamily: "var(--font-display)", letterSpacing: "var(--tracking-display)" }}
+            className="text-xl font-bold tracking-tight"
+            style={{
+              fontFamily: "var(--font-display)",
+              color: "var(--color-text-primary)",
+            }}
           >
-            Contour
+            Contour.
           </Link>
+          <span
+            className="text-xs italic tracking-wider uppercase opacity-75"
+            style={{ fontFamily: "var(--font-body)", color: "var(--color-text-secondary)" }}
+          >
+            An Artist&apos;s Guide
+          </span>
         </header>
-        {children}
+        <div className="flex-1 flex flex-col">{children}</div>
       </body>
     </html>
   );

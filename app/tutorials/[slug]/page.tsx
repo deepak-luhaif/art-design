@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!tutorial) return {};
   return {
     title: `Draw a ${tutorial.name} — Contour`,
-    description: tutorial.subtitle,
+    description: tutorial.description,
   };
 }
 

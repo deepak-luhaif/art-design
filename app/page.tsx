@@ -3,52 +3,60 @@ import { tutorials } from "@/lib/tutorials";
 
 export default function Home() {
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-4 py-10 sm:px-6 sm:py-14">
-      <section className="flex flex-col items-start gap-5 rounded-[var(--radius-theme-lg)] py-6">
+    <main className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-12 md:py-16">
+      <section className="flex flex-col items-start gap-4 max-w-3xl">
         <p
           className="text-xs font-semibold tracking-[0.2em] uppercase"
-          style={{ color: "var(--color-accent)" }}
+          style={{ color: "var(--color-accent)", fontFamily: "var(--font-body)" }}
         >
-          Step by step, at your own pace
+          Slow drawing, one pencil stroke at a time
         </p>
         <h1
-          className="max-w-2xl text-4xl leading-[1.05] font-bold sm:text-6xl"
-          style={{ fontFamily: "var(--font-display)", letterSpacing: "var(--tracking-display)" }}
+          className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1]"
+          style={{
+            fontFamily: "var(--font-display)",
+            letterSpacing: "var(--tracking-display)",
+            color: "var(--color-text-primary)",
+          }}
         >
-          Pick a subject. Draw it one line at a time.
+          Watch the lines draw themselves. Learn to see.
         </h1>
-        <p className="max-w-xl text-base sm:text-lg" style={{ color: "var(--color-text-secondary)" }}>
-          Contour breaks every drawing into 20&ndash;30 small, beginner-friendly steps. Watch the
-          picture build up frame by frame, jump back and forth freely, and revisit any step until
-          it clicks.
+        <p
+          className="text-base md:text-lg leading-relaxed mt-2"
+          style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-body)" }}
+        >
+          Contour is a quiet, interactive sketchbook. Rather than flashing completed outlines on a screen, each step’s line art draws itself in a real pencil-tracing sequence. Step backward and forward freely, study the construction lines, and take your time.
         </p>
       </section>
 
-      <section className="flex flex-col gap-6">
+      <hr className="border-[var(--color-border)] w-full" />
+
+      <section className="flex flex-col gap-8">
         <div className="flex items-end justify-between gap-4">
           <h2
-            className="text-2xl font-bold sm:text-3xl"
+            className="text-2xl font-bold md:text-3xl"
             style={{ fontFamily: "var(--font-display)", letterSpacing: "var(--tracking-display)" }}
           >
-            Choose what to draw
+            The Tutorial Library
           </h2>
         </div>
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {tutorials.map((tutorial) => (
             <SubjectCard key={tutorial.slug} tutorial={tutorial} />
           ))}
+          
           <div
-            className="flex flex-col items-center justify-center gap-2 p-5 text-center"
+            className="flex flex-col items-center justify-center gap-3 p-6 text-center border-2 border-dashed bg-transparent"
             style={{
-              borderWidth: "var(--border-width)",
               borderColor: "var(--color-border)",
-              borderStyle: "dashed",
-              borderRadius: "var(--radius-theme-lg)",
               color: "var(--color-text-secondary)",
+              fontFamily: "var(--font-body)",
             }}
           >
-            <p className="text-sm font-semibold">More subjects coming soon</p>
-            <p className="text-xs">New tutorials drop straight into this grid.</p>
+            <p className="text-sm font-semibold uppercase tracking-wider">More pages to come</p>
+            <p className="text-xs max-w-[200px] leading-relaxed opacity-75">
+              We regularly expand the library with new subjects and construction methods.
+            </p>
           </div>
         </div>
       </section>
