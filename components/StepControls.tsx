@@ -22,8 +22,26 @@ export default function StepControls({ steps, currentStep, onChange }: Props) {
     cursor: disabled ? "not-allowed" : "pointer",
   });
 
+  const progressPercent = (currentStep / total) * 100;
+
   return (
     <div className="flex flex-col gap-6 p-6 border border-[var(--color-border)] bg-[var(--color-surface)] sketchbook-page">
+      {/* Progress Bar */}
+      <div className="w-full flex flex-col gap-2">
+        <div className="h-1.5 w-full bg-[var(--color-border)] overflow-hidden border border-[var(--color-border)]">
+          <div
+            className="h-full bg-[var(--color-accent)] transition-all duration-500 ease-out"
+            style={{ width: `${progressPercent}%` }}
+          />
+        </div>
+        <p
+          className="text-[10px] tracking-[0.2em] font-semibold uppercase opacity-60 text-right"
+          style={{ color: "var(--color-text-secondary)" }}
+        >
+          Frame {currentStep} of {total}
+        </p>
+      </div>
+
       {/* Top Header Controls */}
       <div className="flex items-center justify-between gap-4">
         <button
@@ -32,17 +50,12 @@ export default function StepControls({ steps, currentStep, onChange }: Props) {
           disabled={atStart}
           style={navButtonStyle(atStart)}
           className="min-h-11 min-w-[5.5rem] px-4 py-2.5 text-xs uppercase tracking-widest font-semibold transition-all hover:bg-[var(--color-bg)] active:scale-95 disabled:active:scale-100 disabled:hover:bg-transparent"
+          title="Keyboard: Left Arrow"
         >
           ← Back
         </button>
 
         <div className="text-center flex flex-col gap-1">
-          <p
-            className="text-[10px] tracking-[0.2em] font-semibold uppercase opacity-60"
-            style={{ color: "var(--color-text-secondary)" }}
-          >
-            Frame {currentStep} of {total}
-          </p>
           <h2
             className="text-xl font-bold"
             style={{
@@ -61,6 +74,7 @@ export default function StepControls({ steps, currentStep, onChange }: Props) {
           disabled={atEnd}
           style={navButtonStyle(atEnd)}
           className="min-h-11 min-w-[5.5rem] px-4 py-2.5 text-xs uppercase tracking-widest font-semibold transition-all hover:bg-[var(--color-bg)] active:scale-95 disabled:active:scale-100 disabled:hover:bg-transparent"
+          title="Keyboard: Right Arrow"
         >
           Next →
         </button>
@@ -82,6 +96,19 @@ export default function StepControls({ steps, currentStep, onChange }: Props) {
       </div>
 
       <hr className="border-[var(--color-border)] w-full opacity-60" />
+
+      {/* Keyboard Shortcuts Hint */}
+      <div
+        className="p-3 bg-[var(--color-bg)] border border-[var(--color-border)] text-center"
+        style={{ opacity: 0.85 }}
+      >
+        <p
+          className="text-[11px] tracking-wider uppercase font-semibold"
+          style={{ color: "var(--color-text-secondary)" }}
+        >
+          Use <span className="inline-block px-2 py-0.5 border border-[var(--color-border)] bg-[var(--color-surface)] mx-1">←</span> <span className="inline-block px-2 py-0.5 border border-[var(--color-border)] bg-[var(--color-surface)] mx-1">→</span> to navigate
+        </p>
+      </div>
 
       {/* Signature Sketchbook Page Corners Navigation */}
       <div className="flex flex-col gap-2">
