@@ -37,10 +37,10 @@ export function getCachedRoughPath(strokeId: string, shape: ShapeSpec): string {
     const rough = roughModule.default || roughModule;
     const gen = rough.generator();
 
-    // Use a very subtle sketchy effect: low roughness and bowing
+    // Use a sketchy effect: increased roughness and bowing as per spec
     const options = {
-      roughness: shape.type === "path" ? 0.3 : 0.45,
-      bowing: 0.8,
+      roughness: shape.type === "path" ? 1.8 : 2.2,
+      bowing: 1.5,
       strokeWidth: 1.5,
       seed: seed,
     };
