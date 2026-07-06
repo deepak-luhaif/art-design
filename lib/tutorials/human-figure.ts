@@ -229,11 +229,28 @@ export const humanFigureTutorial: Tutorial = {
     },
     {
       id: 27,
-      title: "Final details",
-      instruction: "Finish with a center seam on the pants and simple straps on the shoes.",
+      title: "Final details & expression",
+      instruction: "Add clothing wrinkles, shading, and expression lines for a natural finish.",
       strokes: [
+        // Pants center seam
         { id: "human-pants-seam", shape: { type: "line", x1: 200, y1: 356, x2: 200, y2: 520 } },
-        { id: "human-shoe-straps", shape: { type: "path", d: "M154,566 L182,566 M218,566 L246,566" } }
+        // Pants fabric wrinkles and depth
+        { id: "human-pants-wrinkles-l", shape: { type: "path", d: "M185,400 Q180,430 185,480 M175,410 Q170,450 175,500" } },
+        { id: "human-pants-wrinkles-r", shape: { type: "path", d: "M215,400 Q220,430 215,480 M225,410 Q230,450 225,500" } },
+        // Shirt definition lines
+        { id: "human-shirt-seams", shape: { type: "path", d: "M160,160 L160,320 M240,160 L240,320 M200,160 L200,220" } },
+        // Shoe details and straps
+        { id: "human-shoe-straps", shape: { type: "path", d: "M154,560 L182,560 M218,560 L246,560" } },
+        // Shoe sole/toe definition
+        { id: "human-shoe-detail", shape: { type: "path", d: "M150,575 L188,575 M212,575 L250,575 M165,570 M232,570" } },
+        // Hand/arm definition
+        { id: "human-hand-detail", shape: { type: "path", d: "M130,280 L120,340 M270,280 L280,340" } },
+        // Face expression (nose and mouth)
+        { id: "human-face-features", shape: { type: "path", d: "M200,105 L200,115 M190,120 Q200,128 210,120" } },
+        // Hair shadow/texture
+        { id: "human-hair-texture", shape: { type: "path", d: "M165,55 Q170,45 180,48 Q190,42 200,40 Q210,42 220,48 Q230,45 235,55" } },
+        // Body contour shadow for dimension
+        { id: "human-body-shadow", shape: { type: "path", d: "M145,200 Q140,270 150,340 M255,200 Q260,270 250,340" } }
       ]
     }
   ]
