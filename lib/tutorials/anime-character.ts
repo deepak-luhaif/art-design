@@ -230,24 +230,13 @@ export const animeCharacterTutorial: Tutorial = {
     },
     {
       id: 26,
-      title: "Shirt collar & final sparkle",
-      instruction: "Finish with a rounded neckline and add depth with final expression details.",
+      title: "Collar and hair accents",
+      instruction: "Finish with a simple neckline and three restrained hair-strand accents.",
       strokes: [
         // Shirt collar
         { id: "anime-collar", shape: { type: "path", d: "M166,320 Q200,340 234,320 M170,325 Q200,335 230,325" } },
         // Shirt fold/drape
         { id: "anime-shirt-fold", shape: { type: "path", d: "M180,330 Q185,340 180,350 M220,330 Q215,340 220,350" } },
-        // Eye sparkles (bright highlights)
-        { id: "anime-eye-sparkle-l1", shape: { type: "circle", cx: 165, cy: 200, r: 3 } },
-        { id: "anime-eye-sparkle-l2", shape: { type: "circle", cx: 172, cy: 205, r: 1.5 } },
-        { id: "anime-eye-sparkle-r1", shape: { type: "circle", cx: 235, cy: 200, r: 3 } },
-        { id: "anime-eye-sparkle-r2", shape: { type: "circle", cx: 228, cy: 205, r: 1.5 } },
-        // Hair volume/shading
-        { id: "anime-hair-shadow", shape: { type: "path", d: "M140,130 Q135,145 140,160 M260,130 Q265,145 260,160" } },
-        // Cheek blush lines (cute expression)
-        { id: "anime-blush", shape: { type: "path", d: "M120,220 Q125,225 120,230 M280,220 Q275,225 280,230" } },
-        // Skin tone shading under chin
-        { id: "anime-chin-shadow", shape: { type: "path", d: "M180,285 Q200,295 220,285" } },
         // Hair strands texture
         { id: "anime-hair-strands", shape: { type: "path", d: "M155,110 Q160,100 165,110 M235,110 Q230,100 225,110 M200,85 Q200,75 200,85" } }
       ]

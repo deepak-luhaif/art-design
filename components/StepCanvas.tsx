@@ -107,9 +107,12 @@ export default function StepCanvas({ tutorial, currentStep, className, animate =
         const pathStyle = {
           fill: "none",
           stroke: isGuide ? "var(--color-border)" : "var(--color-text-primary)",
-          strokeWidth: isGuide ? 1.5 : 2.5,
-          strokeDasharray: isGuide ? "4 5" : "none",
-          opacity: isGuide ? 0.35 : 0.9,
+          strokeWidth: isGuide ? 1.25 : 2.15,
+          strokeDasharray: isGuide ? "5 6" : "none",
+          strokeLinecap: "round" as const,
+          strokeLinejoin: "round" as const,
+          vectorEffect: "non-scaling-stroke" as const,
+          opacity: isGuide ? 0.38 : 0.92,
         };
 
         if (shouldAnimate && isActive) {

@@ -1,6 +1,7 @@
 import type { ShapeSpec } from "./types";
 
 const roughPathCache = new Map<string, string>();
+const RENDERER_VERSION = "refined-pencil-v1";
 
 /**
  * Generates a stable, deterministic seed from a string (stroke ID)
@@ -20,7 +21,7 @@ export function getSeedFromString(str: string): number {
  */
 export function getCachedRoughPath(strokeId: string, shape: ShapeSpec): string {
   const seed = getSeedFromString(strokeId);
-  const cacheKey = `${strokeId}-${seed}-${shape.type}`;
+  const cacheKey = `${RENDERER_VERSION}-${strokeId}-${seed}-${shape.type}`;
   
   if (roughPathCache.has(cacheKey)) {
     return roughPathCache.get(cacheKey)!;
@@ -37,11 +38,14 @@ export function getCachedRoughPath(strokeId: string, shape: ShapeSpec): string {
     const rough = roughModule.default || roughModule;
     const gen = rough.generator();
 
-    // Use a sketchy effect: increased roughness and bowing as per spec
+    // Keep one confident pencil line. Multiple highly-rough strokes made small
+    // features (especially eyes and mouths) look fuzzy and misshapen.
     const options = {
-      roughness: shape.type === "path" ? 1.8 : 2.2,
-      bowing: 1.5,
-      strokeWidth: 1.5,
+      roughness: shape.type === "path" ? 0.55 : 0.7,
+      bowing: 0.35,
+      strokeWidth: 1.4,
+      disableMultiStroke: true,
+      preserveVertices: true,
       seed: seed,
     };
 
