@@ -335,32 +335,5 @@ export const catTutorial: Tutorial = {
       ],
       hideStrokeIds: ['cat-tail-guide'],
     },
-    {
-      id: 22,
-      title: 'Final details',
-      instruction:
-        'Add final touches: cheek blush, fur texture, and expression lines.',
-      strokes: [
-        {
-          id: 'cat-cheek-l',
-          shape: { type: 'path', d: 'M145,175 Q140,185 148,192' },
-        },
-        {
-          id: 'cat-cheek-r',
-          shape: { type: 'path', d: 'M255,175 Q260,185 252,192' },
-        },
-        {
-          id: 'cat-belly-fur',
-          shape: {
-            type: 'path',
-            d: 'M165,330 Q200,345 235,330 M162,355 Q200,365 238,355',
-          },
-        },
-        {
-          id: 'cat-body-shadow',
-          shape: { type: 'path', d: 'M145,280 Q140,320 150,370' },
-        },
-      ],
-    },
   ],
 };
