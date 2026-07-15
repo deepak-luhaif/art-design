@@ -1,339 +1,142 @@
-import type { Tutorial } from '../types';
+import type { Tutorial } from "../types";
+import { expandBeginnerSteps } from "./beginner-steps";
 
 export const catTutorial: Tutorial = {
-  slug: 'cat',
-  name: 'Cat',
+  slug: "cat",
+  name: "Studio Cat",
   description:
-    'A sitting cat, front-facing — 26 frames starting from a simple head guide circle.',
-  difficulty: 'easy',
-  viewBox: '0 0 400 460',
-  steps: [
+    "A poised seated cat built from soft construction shapes, confident contours, and restrained facial detail.",
+  difficulty: "easy",
+  viewBox: "0 0 400 430",
+  steps: expandBeginnerSteps([
     {
       id: 1,
-      title: 'Head guide',
-      instruction:
-        'Draw a light circle to map out the size and position of the head.',
+      title: "Head shape",
+      instruction: "Begin with a wide oval. Keep it light—the cheeks will extend beyond it.",
       strokes: [
-        {
-          id: 'cat-head-guide',
-          shape: { type: 'circle', cx: 200, cy: 145, r: 78 },
-          isGuide: true,
-        },
+        { id: "cat-head-guide", shape: { type: "ellipse", cx: 200, cy: 128, rx: 73, ry: 67 }, isGuide: true },
       ],
     },
     {
       id: 2,
-      title: 'Center guides',
-      instruction: 'Add vertical and horizontal guidelines for symmetry.',
+      title: "Body shape",
+      instruction: "Place a tall pear-shaped oval beneath the head to establish the seated pose.",
       strokes: [
-        {
-          id: 'cat-center-v',
-          shape: { type: 'line', x1: 200, y1: 75, x2: 200, y2: 215 },
-          isGuide: true,
-        },
-        {
-          id: 'cat-center-h',
-          shape: { type: 'line', x1: 130, y1: 145, x2: 270, y2: 145 },
-          isGuide: true,
-        },
+        { id: "cat-body-guide", shape: { type: "ellipse", cx: 200, cy: 294, rx: 76, ry: 105 }, isGuide: true },
       ],
     },
     {
       id: 3,
-      title: 'Ear guides',
-      instruction: 'Mark two rounded triangular guides for the ears.',
+      title: "Face guides",
+      instruction: "Add a center line and a gently curved eye line to keep the expression balanced.",
       strokes: [
-        {
-          id: 'cat-ear-guide-l',
-          shape: { type: 'path', d: 'M135,105 L115,45 L175,85 Z' },
-          isGuide: true,
-        },
-        {
-          id: 'cat-ear-guide-r',
-          shape: { type: 'path', d: 'M265,105 L285,45 L225,85 Z' },
-          isGuide: true,
-        },
+        { id: "cat-face-center", shape: { type: "path", d: "M200,65 C197,102 198,142 200,175" }, isGuide: true },
+        { id: "cat-eye-guide", shape: { type: "path", d: "M145,121 Q200,108 255,121" }, isGuide: true },
       ],
     },
     {
       id: 4,
-      title: 'Left ear',
-      instruction: 'Ink the final rounded ear shape.',
+      title: "Ears and face",
+      instruction: "Ink two tapered ears, then connect them with one smooth cheek-and-chin contour.",
       strokes: [
-        {
-          id: 'cat-ear-left',
-          shape: {
-            type: 'path',
-            d: 'M138,108 Q122,68 128,48 Q145,65 170,88 Z',
-          },
-        },
+        { id: "cat-ear-left", shape: { type: "path", d: "M143,78 C132,56 132,34 151,57 L165,72" } },
+        { id: "cat-ear-right", shape: { type: "path", d: "M235,72 L249,57 C268,34 268,56 257,78" } },
+        { id: "cat-face", shape: { type: "path", d: "M143,78 C129,92 124,111 127,135 C131,171 160,195 200,197 C240,195 269,171 273,135 C276,111 271,92 257,78 C235,62 165,62 143,78 Z" } },
+        { id: "cat-inner-ears", shape: { type: "path", d: "M143,67 Q145,51 153,64 M247,64 Q255,51 257,67" } },
       ],
+      hideStrokeIds: ["cat-head-guide", "cat-face-center", "cat-eye-guide"],
     },
     {
       id: 5,
-      title: 'Right ear',
-      instruction: 'Mirror for the right ear.',
+      title: "Calm eyes",
+      instruction: "Draw two low almond shapes. Small pupils give the cat a quiet, attentive gaze.",
       strokes: [
-        {
-          id: 'cat-ear-right',
-          shape: {
-            type: 'path',
-            d: 'M262,108 Q278,68 272,48 Q255,65 230,88 Z',
-          },
-        },
+        { id: "cat-eye-left", shape: { type: "path", d: "M151,123 C161,112 178,112 188,124 C179,136 161,136 151,123 Z" } },
+        { id: "cat-eye-right", shape: { type: "path", d: "M212,124 C222,112 239,112 249,123 C239,136 221,136 212,124 Z" } },
+        { id: "cat-pupil-left", shape: { type: "ellipse", cx: 170, cy: 124, rx: 3.5, ry: 8 } },
+        { id: "cat-pupil-right", shape: { type: "ellipse", cx: 230, cy: 124, rx: 3.5, ry: 8 } },
       ],
     },
     {
       id: 6,
-      title: 'Inner ears',
-      instruction: 'Add soft inner ear details.',
+      title: "Muzzle",
+      instruction: "Use a tiny softened triangle for the nose and two shallow curves for the mouth.",
       strokes: [
-        {
-          id: 'cat-ear-inner-l',
-          shape: { type: 'path', d: 'M150,98 Q140,72 148,55' },
-        },
-        {
-          id: 'cat-ear-inner-r',
-          shape: { type: 'path', d: 'M250,98 Q260,72 252,55' },
-        },
+        { id: "cat-nose", shape: { type: "path", d: "M192,147 Q200,142 208,147 L200,155 Z" } },
+        { id: "cat-mouth", shape: { type: "path", d: "M200,155 C199,165 188,168 182,161 M200,155 C201,165 212,168 218,161" } },
+        { id: "cat-muzzle", shape: { type: "path", d: "M174,149 Q184,143 191,150 M209,150 Q216,143 226,149" } },
       ],
-      hideStrokeIds: ['cat-ear-guide-l', 'cat-ear-guide-r'],
     },
     {
       id: 7,
-      title: 'Face outline',
-      instruction: 'Draw a soft, rounded face with chubby cheeks.',
+      title: "Whiskers",
+      instruction: "Pull three long, relaxed strokes outward from each cheek.",
       strokes: [
-        {
-          id: 'cat-face-outline',
-          shape: {
-            type: 'path',
-            d: 'M128,152 Q130,112 160,88 Q200,72 240,88 Q270,115 272,155 Q268,195 240,215 Q200,225 160,212 Q130,190 128,152 Z',
-          },
-        },
+        { id: "cat-whiskers", shape: { type: "path", d: "M164,153 C143,150 126,145 110,138 M163,160 C140,160 121,160 104,164 M166,167 C145,173 128,181 114,190 M236,153 C257,150 274,145 290,138 M237,160 C260,160 279,160 296,164 M234,167 C255,173 272,181 286,190" } },
       ],
-      hideStrokeIds: ['cat-head-guide', 'cat-center-v', 'cat-center-h'],
     },
     {
       id: 8,
-      title: 'Eye guide',
-      instruction: 'Add a horizontal guide for eye placement.',
+      title: "Body contour",
+      instruction: "Shape the shoulders into a tapered chest, then broaden gently at the seated haunches.",
       strokes: [
-        {
-          id: 'cat-eye-guide',
-          shape: { type: 'line', x1: 145, y1: 148, x2: 255, y2: 148 },
-          isGuide: true,
-        },
+        { id: "cat-body", shape: { type: "path", d: "M165,190 C143,212 132,249 130,300 C128,343 143,375 168,390 C187,400 213,400 232,390 C257,375 272,343 270,300 C268,249 257,212 235,190" } },
+        { id: "cat-chest", shape: { type: "path", d: "M164,202 Q200,220 236,202" } },
       ],
+      hideStrokeIds: ["cat-body-guide"],
     },
     {
       id: 9,
-      title: 'Left eye',
-      instruction: 'Draw big, expressive almond-shaped eyes.',
+      title: "Front legs",
+      instruction: "Drop two long, slightly tapering lines from the chest toward the paws.",
       strokes: [
-        {
-          id: 'cat-eye-left',
-          shape: {
-            type: 'path',
-            d: 'M165,145 Q175,135 188,140 Q195,148 185,155 Q172,153 165,145 Z',
-          },
-        },
+        { id: "cat-front-legs", shape: { type: "path", d: "M178,220 C177,270 174,326 170,365 M222,220 C223,270 226,326 230,365" } },
       ],
     },
     {
       id: 10,
-      title: 'Right eye',
-      instruction: 'Mirror the right eye.',
+      title: "Paws",
+      instruction: "Close each leg with a flattened oval and divide the toes with two short marks.",
       strokes: [
-        {
-          id: 'cat-eye-right',
-          shape: {
-            type: 'path',
-            d: 'M235,145 Q225,135 212,140 Q205,148 215,155 Q228,153 235,145 Z',
-          },
-        },
+        { id: "cat-paw-left", shape: { type: "path", d: "M146,373 C150,360 170,357 184,368 C191,380 181,390 164,390 C150,390 143,383 146,373 Z" } },
+        { id: "cat-paw-right", shape: { type: "path", d: "M216,368 C230,357 250,360 254,373 C257,383 250,390 236,390 C219,390 209,380 216,368 Z" } },
+        { id: "cat-toes", shape: { type: "path", d: "M160,370 L160,383 M173,369 L174,383 M227,369 L226,383 M240,370 L240,383" } },
       ],
-      hideStrokeIds: ['cat-eye-guide'],
     },
     {
       id: 11,
-      title: 'Pupils & Highlights',
-      instruction: 'Add pupils and tiny sparkle highlights.',
+      title: "Haunches",
+      instruction: "Add two broad arcs behind the front paws to show the folded back legs.",
       strokes: [
-        {
-          id: 'cat-pupil-l',
-          shape: { type: 'ellipse', cx: 177, cy: 147, rx: 7, ry: 8.5 },
-        },
-        {
-          id: 'cat-pupil-r',
-          shape: { type: 'ellipse', cx: 223, cy: 147, rx: 7, ry: 8.5 },
-        },
-        {
-          id: 'cat-pupil-hl-l',
-          shape: { type: 'circle', cx: 174, cy: 143.5, r: 2.2 },
-        },
-        {
-          id: 'cat-pupil-hl-r',
-          shape: { type: 'circle', cx: 220, cy: 143.5, r: 2.2 },
-        },
+        { id: "cat-haunch-left", shape: { type: "path", d: "M145,289 C116,320 119,370 153,386" } },
+        { id: "cat-haunch-right", shape: { type: "path", d: "M255,289 C284,320 281,370 247,386" } },
       ],
     },
     {
       id: 12,
-      title: 'Nose',
-      instruction: 'Draw a small, cute triangular nose.',
+      title: "Tail guide",
+      instruction: "Plan a large S-curve rising behind the right haunch.",
       strokes: [
-        {
-          id: 'cat-nose',
-          shape: { type: 'path', d: 'M190,170 L210,170 L200,182 Z' },
-        },
+        { id: "cat-tail-guide", shape: { type: "path", d: "M258,342 C322,330 326,249 286,225" }, isGuide: true },
       ],
     },
     {
       id: 13,
-      title: 'Mouth',
-      instruction: 'Add the classic gentle cat smile.',
+      title: "Tail",
+      instruction: "Build thickness around the guide, tapering the tail as it turns back toward the body.",
       strokes: [
-        {
-          id: 'cat-mouth',
-          shape: {
-            type: 'path',
-            d: 'M200,182 L200,190 M185,193 Q192,198 200,193 M215,193 Q208,198 200,193',
-          },
-        },
+        { id: "cat-tail", shape: { type: "path", d: "M255,349 C300,348 329,309 322,268 C318,242 301,218 283,218 C267,218 260,233 269,244 C282,234 296,247 300,267 C307,297 289,323 258,329" } },
       ],
+      hideStrokeIds: ["cat-tail-guide"],
     },
     {
       id: 14,
-      title: 'Whiskers',
-      instruction: 'Add three whiskers on each cheek.',
+      title: "Finishing accents",
+      instruction: "Finish with two brow marks and a few directional chest hairs—enough texture without clutter.",
       strokes: [
-        {
-          id: 'cat-whiskers-l',
-          shape: {
-            type: 'path',
-            d: 'M145,185 L105,178 M147,193 L102,193 M145,201 L107,208',
-          },
-        },
-        {
-          id: 'cat-whiskers-r',
-          shape: {
-            type: 'path',
-            d: 'M255,185 L295,178 M253,193 L298,193 M255,201 L293,208',
-          },
-        },
+        { id: "cat-brows", shape: { type: "path", d: "M153,105 Q170,98 186,105 M214,105 Q230,98 247,105" } },
+        { id: "cat-chest-fur", shape: { type: "path", d: "M188,207 L196,216 L202,207 L209,216 L216,207" } },
       ],
     },
-    {
-      id: 15,
-      title: 'Body guide',
-      instruction: 'Sketch a large oval for the body.',
-      strokes: [
-        {
-          id: 'cat-body-guide',
-          shape: { type: 'ellipse', cx: 200, cy: 325, rx: 88, ry: 105 },
-          isGuide: true,
-        },
-      ],
-    },
-    {
-      id: 16,
-      title: 'Body outline',
-      instruction: 'Trace a soft, rounded body shape.',
-      strokes: [
-        {
-          id: 'cat-body-outline',
-          shape: {
-            type: 'path',
-            d: 'M125,235 Q120,280 135,320 Q140,380 165,410 Q200,425 235,410 Q265,375 270,320 Q280,265 245,235 Q220,225 200,230 Q165,225 125,235 Z',
-          },
-        },
-      ],
-      hideStrokeIds: ['cat-body-guide'],
-    },
-    {
-      id: 17,
-      title: 'Chest fluff',
-      instruction: 'Add a soft chest fluff line.',
-      strokes: [
-        {
-          id: 'cat-chest-fluff',
-          shape: { type: 'path', d: 'M165,245 Q200,255 235,245' },
-        },
-      ],
-    },
-    {
-      id: 18,
-      title: 'Front paws',
-      instruction: 'Draw two cute rounded front paws with toes.',
-      strokes: [
-        {
-          id: 'cat-front-paw-l',
-          shape: { type: 'ellipse', cx: 165, cy: 395, rx: 26, ry: 18 },
-        },
-        {
-          id: 'cat-front-paw-r',
-          shape: { type: 'ellipse', cx: 235, cy: 395, rx: 26, ry: 18 },
-        },
-        {
-          id: 'cat-toes',
-          shape: {
-            type: 'path',
-            d: 'M152,398 L152,408 M170,397 L170,407 M182,397 L182,407 M218,397 L218,407 M230,397 L230,407 M248,398 L248,408',
-          },
-        },
-      ],
-    },
-    {
-      id: 19,
-      title: 'Back legs',
-      instruction: 'Add rounded back haunches.',
-      strokes: [
-        {
-          id: 'cat-back-leg-l',
-          shape: {
-            type: 'path',
-            d: 'M130,310 Q110,340 125,385 Q145,400 160,385',
-          },
-        },
-        {
-          id: 'cat-back-leg-r',
-          shape: {
-            type: 'path',
-            d: 'M270,310 Q290,340 275,385 Q255,400 240,385',
-          },
-        },
-      ],
-    },
-    {
-      id: 20,
-      title: 'Tail guide',
-      instruction: 'Draw a light curving guide for the tail.',
-      strokes: [
-        {
-          id: 'cat-tail-guide',
-          shape: {
-            type: 'path',
-            d: 'M265,355 Q320,370 335,310 Q340,260 310,245',
-          },
-          isGuide: true,
-        },
-      ],
-    },
-    {
-      id: 21,
-      title: 'Tail',
-      instruction: 'Ink the final fluffy tail.',
-      strokes: [
-        {
-          id: 'cat-tail',
-          shape: {
-            type: 'path',
-            d: 'M262,352 Q305,365 328,325 Q335,280 315,255 Q295,245 275,260',
-          },
-        },
-      ],
-      hideStrokeIds: ['cat-tail-guide'],
-    },
-  ],
+  ]),
 };

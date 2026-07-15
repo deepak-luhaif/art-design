@@ -1,150 +1,130 @@
 import type { Tutorial } from "../types";
+import { expandBeginnerSteps } from "./beginner-steps";
 
 export const flowerTutorial: Tutorial = {
   slug: "flower",
-  name: "Rose",
-  description: "A beautiful rose flower, showing how to layer overlapping petals outwards from a central spiral bud.",
+  name: "Botanical Rose",
+  description:
+    "A natural rose study built from a tight center, overlapping petal cups, an elegant stem, and two structured leaves.",
   difficulty: "easy",
-  viewBox: "0 0 400 420",
-  steps: [
+  viewBox: "0 0 400 430",
+  steps: expandBeginnerSteps([
     {
       id: 1,
-      title: "Center guide circle",
-      instruction: "Draw a light circular guideline in the center to map the rosebud core.",
+      title: "Bloom guides",
+      instruction: "Place a small circle for the bud center and a wider oval for the full bloom.",
       strokes: [
-        { id: "rose-center-guide", shape: { type: "circle", cx: 200, cy: 190, r: 25 }, isGuide: true }
-      ]
+        { id: "rose-core-guide", shape: { type: "circle", cx: 200, cy: 142, r: 25 }, isGuide: true },
+        { id: "rose-bloom-guide", shape: { type: "ellipse", cx: 200, cy: 150, rx: 102, ry: 88 }, isGuide: true },
+      ],
     },
     {
       id: 2,
-      title: "Outer boundary guide",
-      instruction: "Add a larger light circle around the center to define the final bloom size.",
+      title: "Stem gesture",
+      instruction: "Draw a single relaxed curve from the bloom toward the bottom of the page.",
       strokes: [
-        { id: "rose-outer-guide", shape: { type: "circle", cx: 200, cy: 190, r: 85 }, isGuide: true }
-      ]
+        { id: "rose-stem-guide", shape: { type: "path", d: "M202,222 C190,278 213,328 197,405" }, isGuide: true },
+      ],
     },
     {
       id: 3,
-      title: "Stem guide",
-      instruction: "Sketch a gentle curved vertical guideline down from the bottom of the flower base.",
+      title: "Rose center",
+      instruction: "Begin with a tight broken spiral instead of a perfect target-like circle.",
       strokes: [
-        { id: "rose-stem-guide", shape: { type: "path", d: "M200,215 Q180,300 200,380" }, isGuide: true }
-      ]
+        { id: "rose-center", shape: { type: "path", d: "M190,145 C190,130 211,127 216,140 C220,153 204,163 193,155 C185,149 190,138 201,138 C208,139 209,147 204,151" } },
+      ],
+      hideStrokeIds: ["rose-core-guide"],
     },
     {
       id: 4,
-      title: "Rose core bud",
-      instruction: "Ink a tight, swirling shape in the very center to form the core of the rosebud.",
+      title: "Inner cup",
+      instruction: "Wrap three short, uneven petals around the center to form the first cup.",
       strokes: [
-        { id: "rose-swirl", shape: { type: "path", d: "M195,188 Q200,175 208,183 Q210,195 198,198 Q190,192 200,182" } }
+        { id: "rose-inner-top", shape: { type: "path", d: "M177,143 C177,118 205,108 224,124 C232,138 222,151 211,158" } },
+        { id: "rose-inner-left", shape: { type: "path", d: "M177,143 C164,149 165,171 183,181 C197,184 210,173 211,158" } },
+        { id: "rose-inner-right", shape: { type: "path", d: "M224,124 C241,130 247,152 237,169 C228,180 214,181 201,176" } },
       ],
-      hideStrokeIds: ["rose-center-guide"]
     },
     {
       id: 5,
-      title: "Core wrap petal",
-      instruction: "Draw a small loop enclosing the center swirl representing the first folded petal.",
+      title: "Upper petals",
+      instruction: "Add two broad petals whose rims overlap and turn away from the center.",
       strokes: [
-        { id: "rose-core-wrap", shape: { type: "path", d: "M185,180 C185,165 215,165 215,180 C215,195 185,195 185,180 Z" } }
-      ]
+        { id: "rose-upper-left", shape: { type: "path", d: "M165,158 C143,132 151,96 183,82 C206,75 224,91 224,124" } },
+        { id: "rose-upper-right", shape: { type: "path", d: "M207,92 C233,72 268,92 270,125 C269,150 253,166 237,169" } },
+      ],
     },
     {
       id: 6,
-      title: "First inner petal",
-      instruction: "Add a soft arching line wrapping around the top-left of the core.",
+      title: "Side petals",
+      instruction: "Open the bloom with a cupped petal on each side, keeping their silhouettes different.",
       strokes: [
-        { id: "rose-inner-p1", shape: { type: "path", d: "M178,185 C170,160 195,150 210,160" } }
-      ]
+        { id: "rose-side-left", shape: { type: "path", d: "M166,112 C133,99 104,120 104,153 C105,181 127,202 159,203 C171,194 178,185 183,181" } },
+        { id: "rose-side-right", shape: { type: "path", d: "M250,106 C280,101 300,124 296,157 C291,187 270,204 241,203 C228,195 213,184 201,176" } },
+      ],
     },
     {
       id: 7,
-      title: "Second inner petal",
-      instruction: "Add a matching wrap line around the right side of the core.",
+      title: "Lower petal bowl",
+      instruction: "Close the flower with two deep lower petals that carry the weight of the bloom.",
       strokes: [
-        { id: "rose-inner-p2", shape: { type: "path", d: "M210,160 C230,165 235,200 215,205" } }
-      ]
+        { id: "rose-lower-left", shape: { type: "path", d: "M104,153 C92,180 106,215 139,231 C163,243 188,232 202,211 C195,197 184,187 171,180" } },
+        { id: "rose-lower-right", shape: { type: "path", d: "M296,157 C304,188 287,221 254,234 C231,243 211,230 202,211 C214,194 225,183 237,169" } },
+      ],
+      hideStrokeIds: ["rose-bloom-guide"],
     },
     {
       id: 8,
-      title: "Third inner petal",
-      instruction: "Complete the inner layer with a base petal closing the bottom of the bud.",
+      title: "Petal folds",
+      instruction: "Use a few interior curves to show where petals turn and disappear behind one another.",
       strokes: [
-        { id: "rose-inner-p3", shape: { type: "path", d: "M215,205 C205,220 180,215 178,185" } }
-      ]
+        { id: "rose-folds", shape: { type: "path", d: "M139,124 C146,151 158,169 183,181 M270,125 C263,153 253,181 229,194 M139,231 C153,213 173,205 202,211 M254,234 C242,213 225,205 202,211" } },
+      ],
     },
     {
       id: 9,
-      title: "First middle petal",
-      instruction: "Add a wider, sweeping petal line around the top-left of the bud.",
+      title: "Sepals",
+      instruction: "Add three narrow sepals beneath the bloom before drawing the stem.",
       strokes: [
-        { id: "rose-mid-p1", shape: { type: "path", d: "M165,170 C155,135 200,125 220,140" } }
-      ]
+        { id: "rose-sepals", shape: { type: "path", d: "M160,228 C173,245 186,250 200,248 C215,250 229,245 243,230 M184,239 L173,264 M200,248 L201,270 M217,240 L228,262" } },
+      ],
     },
     {
       id: 10,
-      title: "Second middle petal",
-      instruction: "Add a sweeping petal flanking the right side.",
+      title: "Stem",
+      instruction: "Ink two subtly changing contours around the stem gesture; avoid ruler-straight lines.",
       strokes: [
-        { id: "rose-mid-p2", shape: { type: "path", d: "M220,140 C250,150 260,190 235,215" } }
-      ]
+        { id: "rose-stem-left", shape: { type: "path", d: "M194,248 C185,293 205,336 190,405" } },
+        { id: "rose-stem-right", shape: { type: "path", d: "M207,248 C200,291 220,336 203,406" } },
+      ],
+      hideStrokeIds: ["rose-stem-guide"],
     },
     {
       id: 11,
-      title: "Third middle petal",
-      instruction: "Ink the bottom petal of the middle layer to cup the bloom.",
+      title: "Left leaf",
+      instruction: "Branch a long leaf to the left and close it with a serrated, pointed silhouette.",
       strokes: [
-        { id: "rose-mid-p3", shape: { type: "path", d: "M235,215 C210,240 170,230 165,170" } }
-      ]
+        { id: "rose-leaf-left", shape: { type: "path", d: "M195,302 C165,278 131,282 111,309 C137,332 169,329 197,312 Z" } },
+        { id: "rose-leaf-left-rib", shape: { type: "path", d: "M193,307 C163,305 138,307 116,309 M164,305 L148,291 M153,308 L137,323 M177,305 L166,294 M175,308 L163,320" } },
+      ],
     },
     {
       id: 12,
-      title: "Left outer petal",
-      instruction: "Draw the first massive outer petal extending all the way to the guide circle on the left.",
+      title: "Right leaf",
+      instruction: "Balance the stem with a smaller leaf pointing in the opposite direction.",
       strokes: [
-        { id: "rose-outer-p1", shape: { type: "path", d: "M150,160 C130,110 190,95 210,105" } }
-      ]
+        { id: "rose-leaf-right", shape: { type: "path", d: "M205,345 C233,326 263,336 276,361 C253,379 226,369 205,355 Z" } },
+        { id: "rose-leaf-right-rib", shape: { type: "path", d: "M208,351 C232,350 253,355 272,361 M232,350 L244,339 M242,354 L254,369 M220,350 L229,341" } },
+      ],
     },
     {
       id: 13,
-      title: "Right outer petal",
-      instruction: "Draw the second massive outer petal on the right.",
+      title: "Botanical finish",
+      instruction: "Finish with two small thorns and three short petal accents near the center.",
       strokes: [
-        { id: "rose-outer-p2", shape: { type: "path", d: "M210,105 C230,95 290,110 270,170" } }
-      ]
-    },
-    {
-      id: 14,
-      title: "Bottom outer petal",
-      instruction: "Draw the final outer base petals to finish the flower head bloom outline. The guidelines are complete.",
-      strokes: [
-        { id: "rose-outer-p3", shape: { type: "path", d: "M270,170 C280,230 210,280 190,260 C160,275 130,215 150,160" } }
+        { id: "rose-thorns", shape: { type: "path", d: "M194,280 L181,271 L193,289 M205,374 L218,365 L204,383" } },
+        { id: "rose-center-accents", shape: { type: "path", d: "M183,132 Q193,121 205,123 M188,167 Q200,174 214,166 M225,141 Q231,151 226,160" } },
       ],
-      hideStrokeIds: ["rose-outer-guide"]
     },
-    {
-      id: 15,
-      title: "Stem outline",
-      instruction: "Ink the final thick organic stem line down along the guideline.",
-      strokes: [
-        { id: "rose-stem", shape: { type: "path", d: "M200,260 Q180,320 200,380" } }
-      ],
-      hideStrokeIds: ["rose-stem-guide"]
-    },
-    {
-      id: 16,
-      title: "Leaves",
-      instruction: "Draw two pointed leaves branching off from the stem.",
-      strokes: [
-        { id: "rose-leaves", shape: { type: "path", d: "M188,300 C160,290 150,315 183,320 Z M200,330 C230,325 240,350 208,355 Z" } }
-      ]
-    },
-    {
-      id: 17,
-      title: "Leaf veins",
-      instruction: "Add a central rib line and tiny vein details inside the leaves.",
-      strokes: [
-        { id: "rose-veins", shape: { type: "path", d: "M188,300 Q170,305 160,308 M183,320 Q170,318 160,308 M200,330 Q220,335 230,338 M208,355 Q220,348 230,338" } }
-      ]
-    }
-  ]
+  ]),
 };

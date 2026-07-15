@@ -1,247 +1,150 @@
 import type { Tutorial } from "../types";
+import { expandBeginnerSteps } from "./beginner-steps";
 
 export const humanFigureTutorial: Tutorial = {
   slug: "human-figure",
-  name: "Human Figure",
-  description: "A simple front-facing full body figure, teaching head/body proportions and limb guidelines.",
+  name: "Relaxed Figure",
+  description:
+    "A relaxed standing figure that teaches gesture, shoulder and hip rhythm, natural limbs, and balanced weight.",
   difficulty: "medium",
-  viewBox: "0 0 400 600",
-  steps: [
+  viewBox: "0 0 400 520",
+  steps: expandBeginnerSteps([
     {
       id: 1,
-      title: "Head guide",
-      instruction: "Draw a light circle for the head.",
+      title: "Gesture line",
+      instruction: "Start with one flowing line from the crown through the supporting leg.",
       strokes: [
-        { id: "human-head-guide", shape: { type: "circle", cx: 200, cy: 92, r: 46 }, isGuide: true }
-      ]
+        { id: "human-gesture", shape: { type: "path", d: "M202,38 C190,120 207,198 197,275 C188,348 177,420 181,479" }, isGuide: true },
+      ],
     },
     {
       id: 2,
-      title: "Center guides",
-      instruction: "Add a vertical and horizontal guideline through the head to keep the face centered.",
+      title: "Head guide",
+      instruction: "Place a compact oval at the top of the gesture, tipped only slightly.",
       strokes: [
-        { id: "human-center-v", shape: { type: "line", x1: 200, y1: 48, x2: 200, y2: 136 }, isGuide: true },
-        { id: "human-center-h", shape: { type: "line", x1: 156, y1: 92, x2: 244, y2: 92 }, isGuide: true }
-      ]
+        { id: "human-head-guide", shape: { type: "ellipse", cx: 200, cy: 70, rx: 35, ry: 43 }, isGuide: true },
+        { id: "human-face-center", shape: { type: "path", d: "M202,29 Q196,70 202,111" }, isGuide: true },
+      ],
     },
     {
       id: 3,
-      title: "Torso guide",
-      instruction: "Sketch a loose shoulders-to-waist shape below the head.",
+      title: "Torso masses",
+      instruction: "Use a tilted rib-cage oval and a smaller pelvis shape to establish the body rhythm.",
       strokes: [
-        { id: "human-torso-guide", shape: { type: "path", d: "M126,142 L274,142 L256,330 L144,330 Z" }, isGuide: true }
-      ]
+        { id: "human-rib-guide", shape: { type: "ellipse", cx: 200, cy: 190, rx: 57, ry: 75 }, isGuide: true },
+        { id: "human-pelvis-guide", shape: { type: "path", d: "M165,249 Q200,235 235,252 Q230,279 200,286 Q170,278 165,249 Z" }, isGuide: true },
+      ],
     },
     {
       id: 4,
-      title: "Hip guide",
-      instruction: "Add a guideline marking the hip width.",
+      title: "Shoulders and hips",
+      instruction: "Angle the shoulder line one way and the hips the other to avoid a stiff pose.",
       strokes: [
-        { id: "human-hip-guide", shape: { type: "line", x1: 150, y1: 350, x2: 250, y2: 350 }, isGuide: true }
-      ]
+        { id: "human-shoulder-guide", shape: { type: "line", x1: 142, y1: 133, x2: 258, y2: 145 }, isGuide: true },
+        { id: "human-hip-guide", shape: { type: "line", x1: 167, y1: 259, x2: 234, y2: 252 }, isGuide: true },
+      ],
     },
     {
       id: 5,
-      title: "Neck guides",
-      instruction: "Connect the head to the shoulders with two short guide lines.",
+      title: "Head and neck",
+      instruction: "Ink the jaw and skull, then connect the neck into the sloping shoulders.",
       strokes: [
-        { id: "human-neck-guide-l", shape: { type: "line", x1: 178, y1: 134, x2: 170, y2: 142 }, isGuide: true },
-        { id: "human-neck-guide-r", shape: { type: "line", x1: 222, y1: 134, x2: 230, y2: 142 }, isGuide: true }
-      ]
+        { id: "human-head", shape: { type: "path", d: "M167,67 C168,42 181,27 201,27 C222,28 234,44 233,69 C232,90 220,108 201,114 C182,108 168,90 167,67 Z" } },
+        { id: "human-neck", shape: { type: "path", d: "M184,105 C184,118 181,128 173,134 M217,105 C216,120 220,130 228,138" } },
+      ],
+      hideStrokeIds: ["human-head-guide", "human-face-center"],
     },
     {
       id: 6,
-      title: "Head outline",
-      instruction: "Trace the final rounded head shape over the guide circle, then let it fade away.",
+      title: "Torso contour",
+      instruction: "Shape the shoulders, waist, and hips with long connected curves.",
       strokes: [
-        { id: "human-head-outline", shape: { type: "path", d: "M154,92 C154,64 174,44 200,44 C226,44 246,64 246,92 C246,112 238,128 224,138 C210,146 190,146 176,138 C162,128 154,112 154,92 Z" } }
+        { id: "human-torso", shape: { type: "path", d: "M173,132 C152,136 142,151 145,178 C150,213 158,242 169,264 C185,274 215,273 232,260 C241,229 249,195 253,165 C251,148 242,140 228,137 C217,148 185,147 173,132 Z" } },
+        { id: "human-neckline", shape: { type: "path", d: "M177,137 Q201,154 225,141" } },
       ],
-      hideStrokeIds: ["human-head-guide", "human-center-v", "human-center-h"]
+      hideStrokeIds: ["human-rib-guide", "human-pelvis-guide", "human-shoulder-guide", "human-hip-guide"],
     },
     {
       id: 7,
-      title: "Neckline",
-      instruction: "Add a soft curve at the base of the neck for the collar.",
+      title: "Hanging arm",
+      instruction: "Let the left arm fall from the shoulder in a relaxed outward curve.",
       strokes: [
-        { id: "human-neckline", shape: { type: "path", d: "M178,140 Q200,156 222,140" } }
-      ]
+        { id: "human-arm-left", shape: { type: "path", d: "M154,143 C136,179 129,223 133,273 C134,288 141,298 150,295 C158,292 159,282 157,270 C154,229 160,188 174,153" } },
+        { id: "human-hand-left", shape: { type: "path", d: "M133,273 C126,282 127,300 138,307 C148,310 154,301 150,294" } },
+      ],
     },
     {
       id: 8,
-      title: "Torso outline",
-      instruction: "Ink the final shirt silhouette over the guides, then let them fade away.",
+      title: "Bent arm",
+      instruction: "Bend the right arm gently toward the hip to reinforce the weight shift.",
       strokes: [
-        { id: "human-torso-outline", shape: { type: "path", d: "M172,140 C140,148 128,180 130,230 C132,280 138,320 150,352 C168,362 232,362 250,352 C262,320 268,280 270,230 C272,180 260,148 228,140 C222,150 178,150 172,140 Z" } }
+        { id: "human-arm-right", shape: { type: "path", d: "M246,149 C267,179 273,211 261,236 C253,252 242,261 233,259 M229,239 C242,232 246,218 244,198 C242,177 235,159 228,148" } },
+        { id: "human-hand-right", shape: { type: "path", d: "M233,259 C226,252 224,242 229,236 C236,234 242,241 243,248" } },
       ],
-      hideStrokeIds: ["human-torso-guide", "human-hip-guide", "human-neck-guide-l", "human-neck-guide-r"]
     },
     {
       id: 9,
-      title: "Arm guides",
-      instruction: "Add two straight guide lines from each shoulder down to the wrists.",
+      title: "Supporting leg",
+      instruction: "Carry the body weight down the left leg with a mostly continuous outside contour.",
       strokes: [
-        { id: "human-arm-guide-l", shape: { type: "line", x1: 132, y1: 150, x2: 96, y2: 300 }, isGuide: true },
-        { id: "human-arm-guide-r", shape: { type: "line", x1: 268, y1: 150, x2: 304, y2: 300 }, isGuide: true }
-      ]
+        { id: "human-leg-left", shape: { type: "path", d: "M169,261 C165,326 165,397 169,465 C174,479 187,481 193,466 C194,394 197,329 202,272" } },
+      ],
     },
     {
       id: 10,
-      title: "Left arm",
-      instruction: "Ink the final sleeve shape over the left guide.",
+      title: "Relaxed leg",
+      instruction: "Angle the right leg slightly outward so it carries less weight.",
       strokes: [
-        { id: "human-arm-left", shape: { type: "path", d: "M136,150 C110,170 96,220 92,280 C90,296 94,308 104,310 C114,308 118,296 118,282 C122,230 134,182 156,156 Z" } }
-      ]
+        { id: "human-leg-right", shape: { type: "path", d: "M202,272 C208,328 215,394 223,460 C228,474 241,476 246,461 C238,390 234,322 232,260" } },
+      ],
+      hideStrokeIds: ["human-gesture"],
     },
     {
       id: 11,
-      title: "Right arm",
-      instruction: "Mirror it for the right sleeve — the arm guides have done their job now.",
+      title: "Feet",
+      instruction: "Ground the supporting foot flat and turn the relaxed foot slightly outward.",
       strokes: [
-        { id: "human-arm-right", shape: { type: "path", d: "M264,150 C290,170 304,220 308,280 C310,296 306,308 296,310 C286,308 282,296 282,282 C278,230 266,182 244,156 Z" } }
+        { id: "human-foot-left", shape: { type: "path", d: "M169,463 C162,472 158,485 166,489 L199,489 C205,484 199,472 192,466" } },
+        { id: "human-foot-right", shape: { type: "path", d: "M223,459 C218,470 220,481 229,484 L259,479 C264,473 254,465 246,461" } },
       ],
-      hideStrokeIds: ["human-arm-guide-l", "human-arm-guide-r"]
     },
     {
       id: 12,
-      title: "Left hand",
-      instruction: "Add a simple rounded hand at the end of the left sleeve.",
+      title: "Face placement",
+      instruction: "Add quiet eyes, brows, a short nose, and a neutral half-smile.",
       strokes: [
-        { id: "human-hand-left", shape: { type: "ellipse", cx: 104, cy: 317, rx: 13, ry: 17 } },
-        { id: "human-thumb-left", shape: { type: "path", d: "M94,312 Q88,318 94,326" } }
-      ]
+        { id: "human-brows", shape: { type: "path", d: "M178,58 Q187,53 194,58 M207,58 Q216,53 224,59" } },
+        { id: "human-eyes", shape: { type: "path", d: "M179,69 Q187,64 194,70 Q187,74 179,69 M207,70 Q215,64 223,69 Q215,74 207,70" } },
+        { id: "human-nose", shape: { type: "path", d: "M201,70 C199,79 198,84 203,86" } },
+        { id: "human-mouth", shape: { type: "path", d: "M190,93 Q201,99 212,92" } },
+      ],
     },
     {
       id: 13,
-      title: "Right hand",
-      instruction: "Add the matching right hand.",
+      title: "Hair mass",
+      instruction: "Treat the hair as one graphic shape that overlaps the skull, not as many separate strands.",
       strokes: [
-        { id: "human-hand-right", shape: { type: "ellipse", cx: 296, cy: 317, rx: 13, ry: 17 } },
-        { id: "human-thumb-right", shape: { type: "path", d: "M306,312 Q312,318 306,326" } }
-      ]
+        { id: "human-hair", shape: { type: "path", d: "M166,66 C162,38 178,18 201,18 C225,18 239,39 234,68 C229,54 220,43 208,38 C204,50 190,54 173,48 C170,54 168,60 166,66 Z" } },
+        { id: "human-hair-part", shape: { type: "path", d: "M207,38 Q195,29 183,40" } },
+      ],
     },
     {
       id: 14,
-      title: "Leg guides",
-      instruction: "Add two guide lines from the hips down to the ankles.",
+      title: "Clothing structure",
+      instruction: "Use only a few seams and folds to describe fabric direction and the turn of the body.",
       strokes: [
-        { id: "human-leg-guide-l", shape: { type: "line", x1: 168, y1: 356, x2: 160, y2: 560 }, isGuide: true },
-        { id: "human-leg-guide-r", shape: { type: "line", x1: 232, y1: 356, x2: 240, y2: 560 }, isGuide: true }
-      ]
+        { id: "human-shirt-folds", shape: { type: "path", d: "M174,178 Q184,206 178,236 M226,178 Q216,205 222,234 M169,264 Q201,254 232,260" } },
+        { id: "human-trouser-seams", shape: { type: "path", d: "M202,272 C198,330 200,393 193,466 M202,272 C211,330 216,398 223,460" } },
+      ],
     },
     {
       id: 15,
-      title: "Left leg",
-      instruction: "Ink the final pant leg shape over the left guide.",
+      title: "Final balance",
+      instruction: "Finish with shoe soles and two short elbow folds. Keep the gesture readable through the details.",
       strokes: [
-        { id: "human-leg-left", shape: { type: "path", d: "M154,352 C148,400 146,460 150,520 C151,540 155,556 162,562 C172,558 176,542 174,520 C178,460 182,404 190,358 Z" } }
-      ]
-    },
-    {
-      id: 16,
-      title: "Right leg",
-      instruction: "Mirror it for the right leg — the leg guides fade away now.",
-      strokes: [
-        { id: "human-leg-right", shape: { type: "path", d: "M246,352 C252,400 254,460 250,520 C249,540 245,556 238,562 C228,558 224,542 226,520 C222,460 218,404 210,358 Z" } }
+        { id: "human-shoe-soles", shape: { type: "path", d: "M163,489 L201,489 M226,484 L260,479" } },
+        { id: "human-elbow-folds", shape: { type: "path", d: "M136,230 Q145,226 155,232 M246,216 Q256,220 264,215" } },
       ],
-      hideStrokeIds: ["human-leg-guide-l", "human-leg-guide-r"]
     },
-    {
-      id: 17,
-      title: "Left foot",
-      instruction: "Add a simple shoe shape at the bottom of the left leg.",
-      strokes: [
-        { id: "human-foot-left", shape: { type: "path", d: "M150,558 Q145,572 156,576 L182,576 Q188,570 176,562 Z" } }
-      ]
-    },
-    {
-      id: 18,
-      title: "Right foot",
-      instruction: "Add the matching right shoe.",
-      strokes: [
-        { id: "human-foot-right", shape: { type: "path", d: "M250,558 Q255,572 244,576 L218,576 Q212,570 224,562 Z" } }
-      ]
-    },
-    {
-      id: 19,
-      title: "Eye line",
-      instruction: "Add a light horizontal guide across the face for the eyes.",
-      strokes: [
-        { id: "human-eye-guide", shape: { type: "line", x1: 170, y1: 86, x2: 230, y2: 86 }, isGuide: true }
-      ]
-    },
-    {
-      id: 20,
-      title: "Eyes",
-      instruction: "Draw two small eyes on the guide — it fades away now.",
-      strokes: [
-        { id: "human-eyes-l", shape: { type: "ellipse", cx: 182, cy: 86, rx: 7, ry: 8 } },
-        { id: "human-eyes-r", shape: { type: "ellipse", cx: 218, cy: 86, rx: 7, ry: 8 } }
-      ],
-      hideStrokeIds: ["human-eye-guide"]
-    },
-    {
-      id: 21,
-      title: "Eyebrows",
-      instruction: "Add a short curved brow above each eye.",
-      strokes: [
-        { id: "human-brows", shape: { type: "path", d: "M172,72 Q182,66 192,72 M208,72 Q218,66 228,72" } }
-      ]
-    },
-    {
-      id: 22,
-      title: "Nose",
-      instruction: "Add a small curved line for the nose.",
-      strokes: [
-        { id: "human-nose", shape: { type: "path", d: "M200,92 Q197,100 201,103" } }
-      ]
-    },
-    {
-      id: 23,
-      title: "Mouth",
-      instruction: "Draw a simple curved smile.",
-      strokes: [
-        { id: "human-mouth", shape: { type: "path", d: "M186,112 Q200,120 214,112" } }
-      ]
-    },
-    {
-      id: 24,
-      title: "Ears",
-      instruction: "Add a small curved bump on each side of the head.",
-      strokes: [
-        { id: "human-ears", shape: { type: "path", d: "M154,82 Q146,92 154,102 M246,82 Q254,92 246,102" } }
-      ]
-    },
-    {
-      id: 25,
-      title: "Hair",
-      instruction: "Draw a simple hairstyle over the top of the head.",
-      strokes: [
-        { id: "human-hair", shape: { type: "path", d: "M152,88 C150,54 172,30 200,30 C228,30 250,54 248,88 C244,70 230,58 214,54 C222,66 220,78 214,86 C206,68 194,68 186,86 C180,78 178,66 186,54 C170,58 156,70 152,88 Z" } }
-      ]
-    },
-    {
-      id: 26,
-      title: "Clothing folds",
-      instruction: "Add a few soft lines on the shirt and sleeves for fabric folds.",
-      strokes: [
-        { id: "human-clothing-folds", shape: { type: "path", d: "M160,220 Q170,260 162,300 M240,220 Q230,260 238,300 M188,150 Q200,158 212,150" } }
-      ]
-    },
-    {
-      id: 27,
-      title: "Final clothing accents",
-      instruction: "Finish with a center seam, a few trouser folds, and simple shoe straps.",
-      strokes: [
-        // Pants center seam
-        { id: "human-pants-seam", shape: { type: "line", x1: 200, y1: 356, x2: 200, y2: 520 } },
-        // Pants fabric wrinkles and depth
-        { id: "human-pants-wrinkles-l", shape: { type: "path", d: "M185,400 Q180,430 185,480 M175,410 Q170,450 175,500" } },
-        { id: "human-pants-wrinkles-r", shape: { type: "path", d: "M215,400 Q220,430 215,480 M225,410 Q230,450 225,500" } },
-        // Shoe details and straps
-        { id: "human-shoe-straps", shape: { type: "path", d: "M154,560 L182,560 M218,560 L246,560" } },
-        // Hair texture kept intentionally sparse
-        { id: "human-hair-texture", shape: { type: "path", d: "M165,55 Q180,44 194,48 M206,48 Q220,44 235,55" } }
-      ]
-    }
-  ]
+  ]),
 };

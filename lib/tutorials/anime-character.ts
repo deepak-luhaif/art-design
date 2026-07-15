@@ -1,245 +1,149 @@
 import type { Tutorial } from "../types";
+import { expandBeginnerSteps } from "./beginner-steps";
 
 export const animeCharacterTutorial: Tutorial = {
   slug: "anime-character",
-  name: "Anime Face",
-  description: "An expressive, stylized anime character face showing the classic large-eyed proportions and layered hair clumps.",
+  name: "Anime Portrait",
+  description:
+    "A polished anime bust focused on face construction, clear eye hierarchy, layered bangs, and a balanced hair silhouette.",
   difficulty: "medium",
-  viewBox: "0 0 400 400",
-  steps: [
+  viewBox: "0 0 400 430",
+  steps: expandBeginnerSteps([
     {
       id: 1,
-      title: "Head guide",
-      instruction: "Draw a light circle to map the skull structure.",
+      title: "Skull guide",
+      instruction: "Draw a circle for the cranium, leaving room below for the jaw.",
       strokes: [
-        { id: "anime-head-guide", shape: { type: "circle", cx: 200, cy: 170, r: 70 }, isGuide: true }
-      ]
+        { id: "anime-skull-guide", shape: { type: "circle", cx: 200, cy: 142, r: 76 }, isGuide: true },
+      ],
     },
     {
       id: 2,
-      title: "Center guides",
-      instruction: "Add a vertical center line and a horizontal eye level guide line below the circle's middle.",
+      title: "Face guides",
+      instruction: "Add a center line and a slightly lowered eye line for youthful proportions.",
       strokes: [
-        { id: "anime-center-v", shape: { type: "line", x1: 200, y1: 80, x2: 200, y2: 300 }, isGuide: true },
-        { id: "anime-center-h", shape: { type: "line", x1: 120, y1: 210, x2: 280, y2: 210 }, isGuide: true }
-      ]
+        { id: "anime-center-guide", shape: { type: "path", d: "M200,62 C197,118 199,183 201,246" }, isGuide: true },
+        { id: "anime-eye-guide", shape: { type: "path", d: "M126,164 Q200,151 274,164" }, isGuide: true },
+      ],
     },
     {
       id: 3,
-      title: "Jaw guides",
-      instruction: "Extend lines from the circle sides down to form a pointed chin.",
+      title: "Jaw construction",
+      instruction: "Taper from the widest part of the skull into soft cheeks and a narrow chin.",
       strokes: [
-        { id: "anime-jaw-guide-l", shape: { type: "line", x1: 130, y1: 170, x2: 145, y2: 250 }, isGuide: true },
-        { id: "anime-jaw-guide-r", shape: { type: "line", x1: 270, y1: 170, x2: 255, y2: 250 }, isGuide: true },
-        { id: "anime-chin-guide-l", shape: { type: "line", x1: 145, y1: 250, x2: 200, y2: 290 }, isGuide: true },
-        { id: "anime-chin-guide-r", shape: { type: "line", x1: 255, y1: 250, x2: 200, y2: 290 }, isGuide: true }
-      ]
+        { id: "anime-jaw-guide", shape: { type: "path", d: "M127,144 C131,195 151,229 200,258 C249,229 269,195 273,144" }, isGuide: true },
+      ],
     },
     {
       id: 4,
-      title: "Ear guides",
-      instruction: "Sketch two flat boxes on the sides between the eye line and skull bottom.",
+      title: "Face contour",
+      instruction: "Ink the final face as two long cheek curves meeting at a softened chin.",
       strokes: [
-        { id: "anime-ear-guide-l", shape: { type: "path", d: "M124,180 L115,185 L115,220 L126,215 Z" }, isGuide: true },
-        { id: "anime-ear-guide-r", shape: { type: "path", d: "M276,180 L285,185 L285,220 L274,215 Z" }, isGuide: true }
-      ]
+        { id: "anime-face", shape: { type: "path", d: "M130,138 C129,183 142,222 166,244 C179,256 190,264 200,267 C210,264 221,256 234,244 C258,222 271,183 270,138 C265,96 238,72 200,72 C162,72 135,96 130,138 Z" } },
+      ],
+      hideStrokeIds: ["anime-skull-guide", "anime-center-guide", "anime-jaw-guide"],
     },
     {
       id: 5,
-      title: "Face outline",
-      instruction: "Ink the final smooth cheeks and pointed chin over the guidelines.",
+      title: "Upper lashes",
+      instruction: "Make the upper eyelids the strongest facial lines, with a slight lift at the outer corners.",
       strokes: [
-        { id: "anime-face-outline", shape: { type: "path", d: "M130,170 C130,140 140,110 200,110 C260,110 270,140 270,170 C270,210 255,248 200,290 C145,248 130,210 130,170 Z" } }
+        { id: "anime-upper-eye-left", shape: { type: "path", d: "M143,166 C155,151 181,150 190,169 C174,159 156,159 143,166 M143,166 L136,161" } },
+        { id: "anime-upper-eye-right", shape: { type: "path", d: "M210,169 C219,150 245,151 257,166 C244,159 226,159 210,169 M257,166 L264,161" } },
       ],
-      hideStrokeIds: ["anime-head-guide", "anime-center-v", "anime-center-h", "anime-jaw-guide-l", "anime-jaw-guide-r", "anime-chin-guide-l", "anime-chin-guide-r"]
     },
     {
       id: 6,
-      title: "Neck lines",
-      instruction: "Draw two slender vertical lines for the neck.",
+      title: "Iris and lower lid",
+      instruction: "Nest tall irises under the lashes and suggest the lower lids with short, light curves.",
       strokes: [
-        { id: "anime-neck", shape: { type: "path", d: "M174,265 L174,320 M226,265 L226,320" } }
-      ]
+        { id: "anime-iris-left", shape: { type: "ellipse", cx: 169, cy: 174, rx: 13, ry: 19 } },
+        { id: "anime-iris-right", shape: { type: "ellipse", cx: 231, cy: 174, rx: 13, ry: 19 } },
+        { id: "anime-lower-lids", shape: { type: "path", d: "M148,182 Q169,194 188,181 M212,181 Q231,194 252,182" } },
+      ],
+      hideStrokeIds: ["anime-eye-guide"],
     },
     {
       id: 7,
-      title: "Upper eyelashes",
-      instruction: "Draw thick, bold arches for the top of the stylized eyes.",
+      title: "Pupils and light",
+      instruction: "Add dark vertical pupils and reserve one clean highlight in each eye.",
       strokes: [
-        { id: "anime-eyelash-l", shape: { type: "path", d: "M145,212 Q162,192 180,212" } },
-        { id: "anime-eyelash-r", shape: { type: "path", d: "M220,212 Q238,192 255,212" } }
-      ]
+        { id: "anime-pupils", shape: { type: "path", d: "M169,164 L169,182 M231,164 L231,182" } },
+        { id: "anime-highlights", shape: { type: "circle", cx: 164, cy: 168, r: 3 } },
+        { id: "anime-highlight-right", shape: { type: "circle", cx: 226, cy: 168, r: 3 } },
+      ],
     },
     {
       id: 8,
-      title: "Lash flares",
-      instruction: "Thicken the outer corners and add small pointer spikes.",
+      title: "Brows and features",
+      instruction: "Place slim brows high, then keep the nose and mouth understated.",
       strokes: [
-        { id: "anime-lash-flare-l", shape: { type: "path", d: "M145,212 L138,206 M176,206 L180,212" } },
-        { id: "anime-lash-flare-r", shape: { type: "path", d: "M255,212 L262,206 M224,206 L220,212" } }
-      ]
+        { id: "anime-brows", shape: { type: "path", d: "M143,136 Q166,123 189,134 M211,134 Q234,123 257,136" } },
+        { id: "anime-nose", shape: { type: "path", d: "M198,194 L194,207 L201,210" } },
+        { id: "anime-mouth", shape: { type: "path", d: "M183,226 Q200,237 217,226 M190,232 Q200,239 210,232" } },
+      ],
     },
     {
       id: 9,
-      title: "Lower eyelids",
-      instruction: "Add small, short curves beneath the eyes for the bottom lashes.",
+      title: "Ears and neck",
+      instruction: "Place the ears between brow and nose level, then drop a narrow neck from the jaw.",
       strokes: [
-        { id: "anime-lid-lower-l", shape: { type: "path", d: "M150,234 Q162,240 174,234" } },
-        { id: "anime-lid-lower-r", shape: { type: "path", d: "M226,234 Q238,240 250,234" } }
-      ]
+        { id: "anime-ears", shape: { type: "path", d: "M131,151 C115,150 116,188 135,197 M269,151 C285,150 284,188 265,197" } },
+        { id: "anime-inner-ears", shape: { type: "path", d: "M127,165 Q121,176 130,186 M273,165 Q279,176 270,186" } },
+        { id: "anime-neck", shape: { type: "path", d: "M174,248 C176,276 174,292 162,305 M226,248 C224,276 226,292 238,305" } },
+      ],
     },
     {
       id: 10,
-      title: "Iris outlines",
-      instruction: "Ink large, tall oval shapes inside the eyelids.",
+      title: "Hair volume",
+      instruction: "Plan a large dome around the skull, leaving air between hair and head.",
       strokes: [
-        { id: "anime-iris-l", shape: { type: "ellipse", cx: 162, cy: 220, rx: 11, ry: 15 } },
-        { id: "anime-iris-r", shape: { type: "ellipse", cx: 238, cy: 220, rx: 11, ry: 15 } }
-      ]
+        { id: "anime-hair-guide", shape: { type: "path", d: "M103,167 C96,73 145,35 200,35 C255,35 304,73 297,167" }, isGuide: true },
+      ],
     },
     {
       id: 11,
-      title: "Pupils",
-      instruction: "Add smaller, darker vertical ovals right in the center.",
+      title: "Outer hair",
+      instruction: "Ink the hair as a clear silhouette with longer side pieces framing the jaw.",
       strokes: [
-        { id: "anime-pupil-l", shape: { type: "ellipse", cx: 162, cy: 220, rx: 5, ry: 8 } },
-        { id: "anime-pupil-r", shape: { type: "ellipse", cx: 238, cy: 220, rx: 5, ry: 8 } }
-      ]
+        { id: "anime-hair-outer", shape: { type: "path", d: "M108,178 C98,119 111,75 148,50 C173,32 227,32 252,50 C289,75 302,119 292,178 M112,151 C110,203 103,238 94,267 C111,257 124,238 132,211 M288,151 C290,203 297,238 306,267 C289,257 276,238 268,211" } },
+      ],
+      hideStrokeIds: ["anime-hair-guide"],
     },
     {
       id: 12,
-      title: "Eye highlights",
-      instruction: "Draw two circular bubbles in the top corners for eye reflection sparkle.",
+      title: "Center bangs",
+      instruction: "Drop three overlapping, tapered locks from the crown toward the brow line.",
       strokes: [
-        { id: "anime-highlight-l", shape: { type: "circle", cx: 159, cy: 213, r: 3 } },
-        { id: "anime-highlight-r", shape: { type: "circle", cx: 235, cy: 213, r: 3 } }
-      ]
+        { id: "anime-bang-center", shape: { type: "path", d: "M170,70 C174,101 181,128 191,152 C195,126 199,99 200,68 C204,101 207,128 211,153 C222,126 228,99 230,72" } },
+      ],
     },
     {
       id: 13,
-      title: "Eyelid creases",
-      instruction: "Add a subtle crease line just above the top lashes.",
+      title: "Side bangs",
+      instruction: "Layer broader locks toward the temples, varying their length for a natural rhythm.",
       strokes: [
-        { id: "anime-crease-l", shape: { type: "path", d: "M148,198 Q162,192 176,198" } },
-        { id: "anime-crease-r", shape: { type: "path", d: "M224,198 Q238,192 252,198" } }
-      ]
+        { id: "anime-bang-left", shape: { type: "path", d: "M132,91 C139,121 148,146 159,164 C160,137 162,104 166,76 M113,124 C122,145 130,163 143,177 C140,145 141,117 147,88" } },
+        { id: "anime-bang-right", shape: { type: "path", d: "M268,91 C261,121 252,146 241,164 C240,137 238,104 234,76 M287,124 C278,145 270,163 257,177 C260,145 259,117 253,88" } },
+      ],
     },
     {
       id: 14,
-      title: "Eyebrows",
-      instruction: "Draw thin, curved, highly stylized eyebrows higher up the forehead.",
+      title: "Shoulders and collar",
+      instruction: "Broaden into a simple bust and use the collar to anchor the neck.",
       strokes: [
-        { id: "anime-brow-l", shape: { type: "path", d: "M144,178 Q162,168 180,180" } },
-        { id: "anime-brow-r", shape: { type: "path", d: "M220,180 Q238,168 256,178" } }
-      ]
+        { id: "anime-shoulders", shape: { type: "path", d: "M162,301 C135,307 111,328 101,367 M238,301 C265,307 289,328 299,367" } },
+        { id: "anime-collar", shape: { type: "path", d: "M158,301 Q200,329 242,301 M172,315 Q200,338 228,315" } },
+      ],
     },
     {
       id: 15,
-      title: "Nose",
-      instruction: "Sketch a simple dot or tiny sharp angle representing a dainty nose.",
+      title: "Hair accents",
+      instruction: "Finish with a few directional strand lines and a small crown break—never outline every strand.",
       strokes: [
-        { id: "anime-nose", shape: { type: "path", d: "M198,238 L201,242 L200,245" } }
-      ]
-    },
-    {
-      id: 16,
-      title: "Mouth",
-      instruction: "Add a small, simple smiling curve for the mouth.",
-      strokes: [
-        { id: "anime-mouth", shape: { type: "path", d: "M186,264 Q200,272 214,264" } }
-      ]
-    },
-    {
-      id: 17,
-      title: "Ears outline",
-      instruction: "Trace the ears over the guides, keeping the shapes simple.",
-      strokes: [
-        { id: "anime-ear-l", shape: { type: "path", d: "M130,175 C112,175 110,210 130,225" } },
-        { id: "anime-ear-r", shape: { type: "path", d: "M270,175 C288,175 290,210 270,225" } }
+        { id: "anime-crown-break", shape: { type: "path", d: "M191,40 L198,24 L204,40 L213,27 L211,43" } },
+        { id: "anime-hair-accents", shape: { type: "path", d: "M135,67 Q151,54 169,49 M231,49 Q249,54 265,67 M119,195 Q116,222 107,243 M281,195 Q284,222 293,243" } },
       ],
-      hideStrokeIds: ["anime-ear-guide-l", "anime-ear-guide-r"]
     },
-    {
-      id: 18,
-      title: "Inner ear lines",
-      instruction: "Add small fold curves inside the ears for depth.",
-      strokes: [
-        { id: "anime-ear-inner-l", shape: { type: "path", d: "M124,190 Q118,200 124,210" } },
-        { id: "anime-ear-inner-r", shape: { type: "path", d: "M276,190 Q282,200 276,210" } }
-      ]
-    },
-    {
-      id: 19,
-      title: "Hair volume guide",
-      instruction: "Sketch a large dome enclosing the head to map the hair's outer boundary.",
-      strokes: [
-        { id: "anime-hair-volume", shape: { type: "path", d: "M110,180 C100,50 300,50 290,180" }, isGuide: true }
-      ]
-    },
-    {
-      id: 20,
-      title: "Bangs — center",
-      instruction: "Draw a pointed hair clump right down the middle of the forehead.",
-      strokes: [
-        { id: "anime-bangs-c", shape: { type: "path", d: "M190,130 Q200,185 200,195 Q205,170 215,130" } }
-      ]
-    },
-    {
-      id: 21,
-      title: "Bangs — left side",
-      instruction: "Add layered pointed clumps on the left.",
-      strokes: [
-        { id: "anime-bangs-l1", shape: { type: "path", d: "M160,135 Q172,185 174,190 Q176,165 188,135" } },
-        { id: "anime-bangs-l2", shape: { type: "path", d: "M136,145 Q152,180 152,182 Q150,160 162,138" } }
-      ]
-    },
-    {
-      id: 22,
-      title: "Bangs — right side",
-      instruction: "Add matching clumps on the right.",
-      strokes: [
-        { id: "anime-bangs-r1", shape: { type: "path", d: "M240,135 Q228,185 226,190 Q224,165 212,135" } },
-        { id: "anime-bangs-r2", shape: { type: "path", d: "M264,145 Q248,180 248,182 Q250,160 238,138" } }
-      ]
-    },
-    {
-      id: 23,
-      title: "Side hair strands",
-      instruction: "Draw long strands framing the face, falling past the jaw.",
-      strokes: [
-        { id: "anime-side-hair-l", shape: { type: "path", d: "M130,160 Q120,240 115,260 Q125,230 135,170" } },
-        { id: "anime-side-hair-r", shape: { type: "path", d: "M270,160 Q280,240 285,260 Q275,230 265,170" } }
-      ]
-    },
-    {
-      id: 24,
-      title: "Hair crown outline",
-      instruction: "Trace the outer boundary of the hair volume over the guide dome.",
-      strokes: [
-        { id: "anime-hair-crown", shape: { type: "path", d: "M118,170 C110,120 140,75 200,75 C260,75 290,120 282,170" } }
-      ],
-      hideStrokeIds: ["anime-hair-volume"]
-    },
-    {
-      id: 25,
-      title: "Hair spikiness",
-      instruction: "Add a couple of small, dynamic cowlicks/spikes on top of the head.",
-      strokes: [
-        { id: "anime-hair-spikes", shape: { type: "path", d: "M188,76 Q194,55 192,52 Q198,62 202,75 M212,76 Q206,55 208,52 Q202,62 198,75" } }
-      ]
-    },
-    {
-      id: 26,
-      title: "Collar and hair accents",
-      instruction: "Finish with a simple neckline and three restrained hair-strand accents.",
-      strokes: [
-        // Shirt collar
-        { id: "anime-collar", shape: { type: "path", d: "M166,320 Q200,340 234,320 M170,325 Q200,335 230,325" } },
-        // Shirt fold/drape
-        { id: "anime-shirt-fold", shape: { type: "path", d: "M180,330 Q185,340 180,350 M220,330 Q215,340 220,350" } },
-        // Hair strands texture
-        { id: "anime-hair-strands", shape: { type: "path", d: "M155,110 Q160,100 165,110 M235,110 Q230,100 225,110 M200,85 Q200,75 200,85" } }
-      ]
-    }
-  ]
+  ]),
 };
